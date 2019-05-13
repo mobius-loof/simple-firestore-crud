@@ -28,7 +28,7 @@ export class DetailPage implements OnInit {
 
   async deleteAccount() {
     const alert = await this.alertController.create({
-      message: 'Are you sure you want to delete the song?',
+      message: 'Are you sure you want to delete the account?',
       buttons: [
         {
           text: 'Cancel',
