@@ -1,0 +1,29 @@
+<ion-content padding>
+  <form [formGroup]="createAccountForm" (submit)="createAccount()">
+    <ion-item>
+      <ion-label stacked>First Name</ion-label>
+      <ion-input formControlName="fname" type="text" 
+        placeholder="Johnny">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Last Name</ion-label>
+      <ion-input formControlName="lname" type="text" 
+        placeholder="Appleseed">
+      </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Email</ion-label>
+      <ion-input formControlName="email" type="text" 
+        placeholder="john@apple.com">
+      </ion-input>
+    </ion-item>
+
+    <ion-button expand="block" type="submit" 
+      [disabled]="!createAccountForm.valid">
+      Add Account
+    </ion-button>
+  </form>
+</ion-content>
