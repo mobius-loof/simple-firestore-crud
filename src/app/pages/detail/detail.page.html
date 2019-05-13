@@ -1,9 +1,24 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>detail</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ (account | async)?.first_name }} {{ (account | async)?.last_name }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
+  <h3> Account </h3>
+  <p>
+    The account is under the name {{ (account | async)?.first_name }} {{ (account | async)?.last_name }}.
+  </p>
 
+  <h3> Email </h3>
+  <p>
+    The email provided is {{ (account | async)?.email }}.
+  </p>
+
+  <ion-button expand="block" (click)="deleteAccount()">
+    DELETE SONG
+  </ion-button>
 </ion-content>
