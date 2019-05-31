@@ -21,6 +21,13 @@
       </ion-input>
     </ion-item>
 
+    <ion-item>
+      <ion-label stacked>Picture</ion-label>
+      <ion-input formControlName="picture" type="file"
+        (change)="upload($event)" accept=".png,.jpg">
+      </ion-input>
+    </ion-item>
+
     <ion-button expand="block" type="submit" 
       [disabled]="!createAccountForm.valid">
       Add Account

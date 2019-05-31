@@ -9,6 +9,12 @@
 
 <ion-content padding>
   <h3> Account </h3>
+
+  <div *ngIf="imageURL | async; let url">
+    <img [src]="url" />
+    <!-- File uploaded: <a [href]="url">{{url}}</a> -->
+  </div>
+
   <p>
     The account is under the name {{ (account | async)?.first_name }} {{ (account | async)?.last_name }}.
   </p>
@@ -17,7 +23,7 @@
   <p>
     The email provided is {{ (account | async)?.email }}.
   </p>
-
+  
   <ion-button expand="block" (click)="deleteAccount()">
     DELETE ACCOUNT
   </ion-button>

@@ -13,6 +13,7 @@ import { FirestoreService } from '../../services/data/firestore.service';
 })
 export class CreatePage implements OnInit {
   public createAccountForm: FormGroup;
+  private item: File;
   
   constructor(
     public loadingCtrl: LoadingController,
@@ -25,6 +26,7 @@ export class CreatePage implements OnInit {
       fname: ['', Validators.required],
       lname: ['', Validators.required],
       email: ['', Validators.required],
+      picture: ['', Validators.required]
     });
   }
 
@@ -35,8 +37,9 @@ export class CreatePage implements OnInit {
     const lname = this.createAccountForm.value.lname;
     const email = this.createAccountForm.value.email;
 
+    const picture = this.createAccountForm.value.picture;
     this.firestoreService
-      .createAccount(fname, lname, email)
+      .createAccount(fname, lname, email, this.item)
       .then(
         () => {
           loading.dismiss().then(() => {
@@ -52,6 +55,10 @@ export class CreatePage implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  upload(event) {
+    this.item = event.target.files[0];
   }
 
 }

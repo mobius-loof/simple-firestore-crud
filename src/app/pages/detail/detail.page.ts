@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Account } from '../../models/account.interface';
 import { FirestoreService } from '../../services/data/firestore.service';
@@ -11,8 +11,11 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./detail.page.scss'],
 })
 export class DetailPage implements OnInit {
-  public account: Observable<Account>;
+  // @ViewChild('profile') profile: ElementRef;
+
+  public account: any;
   public accountId: string;
+  public imageURL: any;
 
   constructor(
     private firestore: FirestoreService,
@@ -23,7 +26,16 @@ export class DetailPage implements OnInit {
 
   ngOnInit() {
     this.accountId = this.route.snapshot.paramMap.get('id');
-    this.account = this.firestore.getAccountDetail(this.accountId).valueChanges();
+    this.account = this.firestore.getAccountDetail(this.accountId);
+  }
+
+  ngAfterViewInit() {
+    this.account.then(ref => {
+      console.log(ref.file_id);
+      return ref.file_id;
+    }).then(file_id => {
+      this.imageURL = this.firestore.getAccountPictureURL(file_id);
+    });
   }
 
   async deleteAccount() {
